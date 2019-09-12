@@ -1,0 +1,221 @@
+
+/* search css   */
+.search-select{
+	background : white;
+	    border: 1px solid rgba(0,0,0,.1);
+		margin-left:3px ;
+		margin-right:3px;
+}
+.search-label{
+	color : #555;
+	font-weight: 550 ;
+	font-size: 15px ;
+}
+.search-button{
+	margin-top:25px ;
+	width:100%;
+	
+	border: 1px solid rgba(0,0,0,.1);
+}
+@media (min-width: 700px){
+	.search-button{
+		border-radius: 5px ;
+	}
+}
+
+/*product -specification detail*/
+.product-desc{
+	overflow-x : auto;
+	border: 2px solid rgba(0,0,0,.1);
+}
+.quickview-spec{
+	font-size:15px ;
+	margin-right: 8px;
+	margin-bottom: 8px;
+	color: #113d84;
+}
+.quickview-value{
+	font-size : 14px;
+	color : #888;
+}
+
+.specification-title{
+	color : red ;
+	margin-bottom : 10px;
+	
+}
+.product-name{
+	text-align : center ;
+	color: #222;
+	margin-top: 15px;
+}
+.dealer-info{
+	margin-top :20px;
+	border: 2px solid rgba(0,0,0,.1);
+}
+.dealer-title{
+	font-size:20px ;
+	color: #1752b1 ;
+	
+	text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0;
+	}
+.dealer-name{
+	font-size : 17px;
+	color: black;
+	font-weight : 600;
+}
+.menu-li:hover{
+	background:red;
+}
+
+
+/*************    advance search css   *********/
+
+.advance-search-btn{
+	margin-top :5px;
+}
+
+@media (max-width :600px){
+.advance-search-btn{
+	margin-top :20px;
+	}
+.advance-input{
+	width:100%;
+	margin-top :15px;
+}
+}
+
+.advance-select{
+overflow-x: auto;	
+}
+
+.legend{
+font-size : 15px !important;
+}
+
+.pro_type{
+font-size : 13px !important;
+}
+
+/***************Dealer-detail btn************/
+.dealer-detail-btn{
+	width: 30%;
+	margin-bottom: 10%;
+	text-align:center;
+}
+
+.sub-menu-list{
+	background: red !important;
+	}
+
+.product-img1{
+	min-height : 150px;
+	min-width : 150px;
+}
+.product-img{
+	min-height : 100px;
+	min-width : 100px;
+}
+.seller-btn{
+	background: #f2f3f7 !important;
+}
+.span-info{
+	color : #113d84;
+	line-height:30px;
+}
+.product-info{
+	background:#fff;
+	border: 1px solid #f1f1f1;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,.12);
+}
+.profile-picture{
+	height: 200px;
+	width: 200px;
+	border-radius :50%;
+}
+.banner-image{
+	height : 240px !important;
+	width : 100%;
+}
+.register-page{
+margin-bottom : 30px;
+}
+.slider-image{
+height: 350px !important;
+width:100% !important;
+}
+.cart-pro{
+	background-color: #1752b1;
+    border-color: #1752b1;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 12px;
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-transform: uppercase;
+	background-color: #1752b1;
+    border-color: #1752b1;
+    color: #fff;
+}
+.seller-product-info{
+	margin-bottom:20px;
+}
+.pro-seller{
+	background: #1752b1;
+    border-radius: 0;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 12px 16px;
+}
+.pagination-style{
+	float : right;
+}
+.ajax-search{
+	line-height:10px !important;
+}
+
+.search-box{
+        width:95%;
+        position: relative;
+        display: inline-block;
+        font-size: 14px;
+    }
+    .search-box input[type="text"]{
+        height: 40px;
+        padding: 5px 10px;
+        border: 1px solid #CCCCCC;
+        font-size: 14px;
+    }
+    .result{
+        position: absolute;        
+        z-index: 999;
+        top: 100%;
+        left: 0;
+		margin-top: 2px !important;		
+		color : #888;
+		background: white;
+    }
+    .search-box input[type="text"], .result{
+		
+        width: 97%;
+		color : #888 !important;
+        box-sizing: border-box;
+    }
+    /* Formatting result items */
+    .result p{
+        margin: 0;
+        padding: 7px 10px;
+        border: 1px solid #CCCCCC;
+        border-top: none;
+        cursor: pointer;
+    }
+    .result p:hover{
+        background: #f2f2f2;
+    }
+	
