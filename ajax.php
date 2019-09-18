@@ -1,6 +1,5 @@
 <?php
 require_once('include/vdooz.php');
-require_once('include/top.php');
 
 // // if live search selected specific category
 //     if(isset($_POST['term']) && !empty($_POST['cat'])){

@@ -4,6 +4,9 @@ require_once("include/top.php");
 require_once("include/header.php");
 require_once("include/slider.php");
 
+
+
+
 $sql = $conn->query("SELECT * FROM cat_detail order by cat_name")or die($conn->error);
 
 ?>
@@ -73,7 +76,7 @@ if($query1->num_rows != 0){
 <div class="so-categories custom-slidercates module clearfix">
 	<h3 class="modtitle"><span><?php echo $result['slider_title'];?> </span></h3>
 	<div class="modcontent">
-		<div class="cat-wrap theme3 font-title yt-content-slider"  data-rtl="yes" data-autoplay="yes" data-autoheight="no" data-delay="4" data-speed="0.2" data-margin="30" data-items_column0="5" data-items_column1="4" data-items_column2="3"  data-items_column3="2" data-items_column4="1" data-arrows="no" data-pagination="no" data-lazyload="yes" data-loop="yes" data-hoverpause="no">
+		<div class="cat-wrap theme3 font-title yt-content-slider"  data-rtl="yes" data-autoplay="yes" data-autoheight="no" data-delay="4" data-speed="0.2" data-margin="30" data-items_column0="5" data-items_column1="4" data-items_column2="3"  data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="yes" data-lazyload="yes" data-loop="yes" data-hoverpause="no">
 
 <?php
  while($result1 = $query1->fetch_assoc()){
@@ -126,7 +129,7 @@ c:
  }
 ?>
 
-<button type="button"  class="new-btn">fjhsldfjsdlfksjdflsdafsdafsjdafa</button>
+<!-- <button type="button"  class="new-btn">fjhsldfjsdlfksjdflsdafsdafsjdafa</button> -->
 
 <!-- BEST SELLER SLIDER-->
 <?php

@@ -1,49 +1,51 @@
 <?php
 require_once('../include/vdooz.php');
-// require_once('../include/top.php');
 
-// // if live search selected specific category
-//     if(isset($_POST['term']) && !empty($_POST['cat'])){
-//
-// 	$Name = $_POST['term'];
-// 	$cat = $_POST['cat'];
-// 	//Search query.
-//    $Query = $conn->query("SELECT DISTINCT vpro_name FROM product_profile WHERE vps_spec_name = 'price' and vpd_user_status = 'active' and vpro_main_cat = '$cat' and  vpro_name LIKE '%$Name%' LIMIT 10");
-//
-// 		    while($row = $Query->fetch_assoc()){
-//                 echo "<p>" . $row['vpro_name'] . "</p>";
-//
-// 	}
-//
-//   }
-// // if live search all categories
-// else{
-//
-// 	$Name = $_POST['term'];
-//
-// //Search query.
-//    $Query = $conn->query("SELECT DISTINCT vpro_name FROM product_profile WHERE vps_spec_name = 'price' and vpd_user_status = 'active' and  vpro_name LIKE '%$Name%' LIMIT 10");
-//
-// 		    while($row = $Query->fetch_assoc()){
-//                 echo "<p>" . $row['vpro_name'] . "</p>";
-//
-// 	}
-// }
+$data2 = array();
 
-   $data = array();
-   $query = $conn->query("SELECT DISTINCT vpro_name FROM product_profile WHERE vps_spec_name = 'price' and vpd_user_status = 'active'");
+  if(isset($_POST['cat'])){
 
-    if($query->num_rows > 0){
+	$cat = $_POST['cat'];
 
-        $userData = $query->fetch_assoc();
+  $query = $conn->query("SELECT DISTINCT vpro_name FROM product_profile WHERE vps_spec_name = 'price' and vpd_user_status = 'active' and vpro_main_cat = '$cat'");
 
-        $data['skills'] = $userData;
+   if($query->num_rows > 0){
 
-    }else{
+     while( $row = $query->fetch_assoc()) {
 
-        $data['skills'] = 'No data';
-    }
+       array_push($data2 , $row['vpro_name']);
 
+       }
+
+       $data['skills'] = $data2;
+
+   }else{
+
+       $data['skills'] = 'No data';
+   }
+
+}else{
+
+
+$query = $conn->query("SELECT DISTINCT vpro_name FROM product_profile WHERE vps_spec_name = 'price' and vpd_user_status = 'active' and  vpro_name LIKE '%$Name%' LIMIT 10");
+
+ if($query->num_rows > 0){
+
+   while( $row = $query->fetch_assoc()) {
+
+     array_push($data2 , $row['vpro_name']);
+
+     }
+
+     $data['skills'] = $data2;
+
+ }else{
+
+     $data['skills'] = 'No data';
+ }
+
+
+}
 
     //returns data as JSON format
     echo json_encode($data);

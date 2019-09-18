@@ -6,7 +6,7 @@
 /*the container must be positioned relative:*/
 .autocomplete {
   position: relative;
-  /* display: inline-block; */
+  display: inline-block;
 }
 
 .autocomplete-items {
@@ -107,12 +107,12 @@
 <div id="search0" class="search input-group form-group ajax-search">
 <div class="select_category filter_type  icon-select hidden-sm hidden-xs">
 <select class="no-border" id="live-search" name="category_id">
-<option value="">All Categories</option>
+<option class="cats" value="">All Categories</option>
 <?php
 $sql = $conn->query("SELECT * FROM cat_detail order by cat_name")or die($conn->error);
 while($row = $sql->fetch_assoc()){
 ?>
-<option value="<?php echo $row['cat_id']?>"><?php echo $row['cat_name']?></option>
+<option class="cats" value="<?php echo $row['cat_id']?>"><?php echo $row['cat_name']?></option>
 <?php
 }
 ?>
@@ -337,11 +337,61 @@ echo "<a href='products.php?block=".encr($row['cat_id'])."&block1=".$cat."' clas
 
 <script>
 
-var result = new Array();
+ var result = new Array();
+ var skills = [];
 
-var skills = new Array();
 
 $(document).ready(function(){
+
+    getAll();
+
+        });
+
+
+$('#live-search').click(function(){
+
+  var cat = $(this).val();
+
+          if(cat == ''){
+
+          getAll();
+
+        }else{
+
+          getWithCat(cat);
+
+        }
+
+      });
+
+function getWithCat(cat){
+  skills = [];
+  $.ajax({
+     type:'POST',
+     data:{cat:cat},
+     url: 'process/ajax2.php',
+     success: function(resp) {
+       result = resp.skills;
+
+       $.each(result, function(i) {
+
+         skills.push(result[i]);
+
+         autocomplete(document.getElementById("myInput1"), skills);
+
+
+      });
+
+
+
+    },dataType : "json",
+
+
+    });
+}
+function getAll(){
+
+    skills = [];
 
   $.ajax({
      type:'get',
@@ -350,31 +400,33 @@ $(document).ready(function(){
 
        result = resp.skills;
 
-       skills.push(result.vpro_name);
+       $.each(result, function(i) {
+
+         skills.push(result[i]);
+
+         autocomplete(document.getElementById("myInput1"), skills);
 
 
+      });
 
-      //  $.each(result, function(i) {
-      //
-      //    skills.push(result.vpro_name);
-      //
-      //
-      //
-      // });
+
 
     },dataType : "json",
 
+
     });
 
-    console.log(skills);
 
-        });
+}
+
 
 
 
 
 
 function autocomplete(inp, arr) {
+
+
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
   var currentFocus;
@@ -473,51 +525,6 @@ function autocomplete(inp, arr) {
   });
 }
 
-/*An array containing all the country names in the world:*/
-
-/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-autocomplete(document.getElementById("myInput1"), skills);
-
 </script>
 
-<script type="text/javascript">
-$(document).ready(function(){
-
-    $('.search-box input[type="text"]').on("keyup input", function(){
-			var test = $('#live-search').children("option:selected").val();
-	//alert(test);
-        /* Get input value on change */
-        var inputVal = $(this).val();
-        var resultDropdown = $(this).siblings(".result");
-        if(inputVal.length){
-			    $.ajax({
-               async: false,
-			   	 			type: "POST",
-               url: "ajax.php",
-               data: {
-                   //Assigning value of "name" into "search" variable.
-                   term: inputVal,
-				   cat: test
-
-               },
-               //If result found, this funtion will be called.
-               success: function(data) {
-
-					$(".result").html(data);
-               }
-           });
-
-        } else{
-            resultDropdown.empty();
-        }
-    });
-
-    // Set search input value on click of result item
-    $(document).on("click", ".result p", function(){
-        $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
-        $(this).parent(".result").empty();
-    });
-});
-</script>
-<!-- //Header Container  -->
 </header>

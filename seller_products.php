@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once("include/vdooz.php");
 require_once("include/top.php");
 require_once("include/header.php");
@@ -6,10 +6,10 @@ require_once("include/header.php");
 if(isset($_REQUEST['block5'])){
 
 
-//get info to print dealer detail 
+//get info to print dealer detail
 $sql1 = $conn->query("SELECT * FROM profile_detail
 LEFT JOIN user_login ON user_login.user_id = profile_detail.pd_user_id
-WHERE pd_user_id = '".decr($_REQUEST['block5'])."'")or die($conn->error); 
+WHERE pd_user_id = '".decr($_REQUEST['block5'])."'")or die($conn->error);
 
 $row1 = $sql1->fetch_assoc();
 
@@ -17,21 +17,21 @@ $seller_image = 'upload/dealer/'.$row1['pd_image'];
 
 $banner_image = 'upload/banner/'.$row1['pd_banner'];
 
-	
+
 }else{
 
-// clicked product info 
-$find = $conn->query("SELECT * FROM product_detail WHERE pro_id = '".decr($_REQUEST['block1'])."'")or die($conn->error); 
+// clicked product info
+$find = $conn->query("SELECT * FROM product_detail WHERE pro_id = '".decr($_REQUEST['block1'])."'")or die($conn->error);
 
 $data = $find->fetch_assoc();
 
 $product_image = 'upload/product/'.$data['pro_image'];
 
 
-//get info to print dealer detail 
+//get info to print dealer detail
 $sql1 = $conn->query("SELECT * FROM profile_detail
 LEFT JOIN user_login ON user_login.user_id = profile_detail.pd_user_id
-WHERE pd_user_id = '".decr($_REQUEST['block'])."'")or die($conn->error); 
+WHERE pd_user_id = '".decr($_REQUEST['block'])."'")or die($conn->error);
 
 $row1 = $sql1->fetch_assoc();
 
@@ -43,7 +43,7 @@ $banner_image = 'upload/banner/'.$row1['pd_banner'];
 <!-- Main Container  -->
 <div class="main-container container">
 <?php if (!isset($_REQUEST['block5'])){?>
-<div class="row">			
+<div class="row">
 <div id="content" class="col-sm-12 item-article">
 <a href="#"><img src="<?php echo $banner_image;?>" class="img-responsive slider-image"></a>
 <div class="row box-1-about">
@@ -51,7 +51,7 @@ $banner_image = 'upload/banner/'.$row1['pd_banner'];
 <!--<div class="title-about-us">
 <h2>Welcome To <?php echo $row1['pd_shop_name'];?> </h2>
 </div>-->
- 
+
 <div class="content-about-us">
 <div class="image-about-us product-info">
 <img src="<?php echo $seller_image;?>" class="img-responsive profile-picture">
@@ -68,7 +68,7 @@ $banner_image = 'upload/banner/'.$row1['pd_banner'];
 		 <a href="login.php" class="addToCart btn-button cart-pro" title="Add to Cart" ><i class="fa fa-shopping-basket"></i>Add To Cart
 		</a>
 		<?php }?>
-		<!--quickview-->                                                        
+		<!--quickview-->
 		<!--end quickview-->
 	</div>
 </div>
@@ -98,7 +98,7 @@ $banner_image = 'upload/banner/'.$row1['pd_banner'];
 </div>
 <?php }else{ ?>
 
-<div class="row">			
+<div class="row">
 <div id="content" class="col-sm-12 item-article">
 <a href="#"><img src="<?php echo $banner_image;?>" class="img-responsive slider-image"></a>
 <div class="row box-1-about">
@@ -107,7 +107,7 @@ $banner_image = 'upload/banner/'.$row1['pd_banner'];
 <!--<div class="title-about-us">
 <h2>Welcome To <?php echo $row1['pd_shop_name'];?> </h2>
 </div>-->
- 
+
 <div class="content-about-us">
 <div class="image-about-us product-info">
 <img src="<?php echo $seller_image;?>" class="img-responsive profile-picture">
@@ -138,7 +138,7 @@ $banner_image = 'upload/banner/'.$row1['pd_banner'];
 </div>
 </div>
 </div>
-<?php 
+<?php
 }
 $query = $conn->query("SELECT * FROM cat_detail")or die($conn->error);
 while($res = $query->fetch_assoc()){
@@ -149,36 +149,36 @@ if(isset($_REQUEST['block5'])){
  WHERE pro_user_id = '".decr($_REQUEST['block5'])."' and pro_main_cat = '".$res['cat_id']."'")or die($conn->error);
 
 }else{
-	
+
  $sql = $conn->query("SELECT * FROM product_detail
  WHERE pro_user_id = '".decr($_REQUEST['block'])."' and pro_main_cat = '".$res['cat_id']."'")or die($conn->error);
 
 }
-if($sql->num_rows !=0 ){	
+if($sql->num_rows !=0 ){
 	?>
 <div class="row product-info seller-product-info">
-	
+
 
 <!--Middle Part Start-->
 <div class="so-categories custom-slidercates module clearfix">
 	<h3 class="modtitle"><b><?php echo $res['cat_name']?> Products</b></h3>
-	<div class="modcontent">        
-		<div class="cat-wrap theme3 font-title yt-content-slider"  data-rtl="yes" data-autoplay="yes" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="30" data-items_column0="5" data-items_column1="4" data-items_column2="3"  data-items_column3="2" data-items_column4="1" data-arrows="no" data-pagination="no" data-lazyload="yes" data-loop="yes" data-hoverpause="yes">
+	<div class="modcontent">
+		<div class="cat-wrap theme3 font-title yt-content-slider"  data-rtl="yes" data-autoplay="yes" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="30" data-items_column0="5" data-items_column1="4" data-items_column2="3"  data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="yes" data-lazyload="yes" data-loop="yes" data-hoverpause="yes">
 <?php
  while($row = $sql->fetch_assoc()){
  $product_image = "upload/product/".$row['pro_image'];
 
 //GET Price in specification_detail according to pro_id
 			$sql1 = $conn->query("SELECT * FROM product_spec WHERE ps_pro_id = '".$row['pro_id']."'")or die($conn->error);
-			
+
 			while($row1 = $sql1->fetch_assoc())
 			{
 				if($row1['ps_spec_name'] == 'Price' or $row1['ps_spec_name'] == 'Rate' or $row1['ps_spec_name'] == 'price'){
 					goto c;
 				}
 			}
-		
-c:		
+
+c:
 ?>
 			<div class="content-box">
 				<div class="image-cat">
@@ -186,7 +186,7 @@ c:
 						<img src="<?php echo $product_image?>"  style='height:170px !important; width:100% !important;' alt="Ground round enim" class="img-responsive " />
 					</a>
 				</div>
-				<div class="cat-title"> 
+				<div class="cat-title">
 		<?php
 			if (is_numeric($row1['ps_spec_value'])){
 			$price = $row1['ps_spec_value']/10;
@@ -197,13 +197,13 @@ c:
 			<?php if (is_numeric($row1['ps_spec_value'])){
 			?>
 				<span class="price-old">Rs. <?php echo $price;?></span>
-			<?php }?>	
+			<?php }?>
 			</p>
 					<a href="product_detail.php?block=<?php echo encr($row['pro_id']);?>" target="_self"> <?php echo $row['pro_name'];?></a>
 				</div>
 			</div>
 <?php }?>
-			
+
 		</div>
 	</div>
 	<div class="loadeding"></div>
@@ -211,7 +211,7 @@ c:
 
 </div>
 
-<?php 
+<?php
 }
 }
 ?>
@@ -237,7 +237,7 @@ success:function(data){
 });
 </script>
 
-<script>              			
+<script>
 function display(view) {
 $('.products-list').removeClass('list grid').addClass(view);
 $('.list-view .btn').removeClass('active');
@@ -249,10 +249,10 @@ $('.products-list .product-layout .item-desc').removeClass('hidden');
 $('.products-list .product-layout .list-block').removeClass('hidden');
 $('.products-list .product-layout .button-group').addClass('hidden');
 $('.list-view .' + view).addClass('active');
-$.cookie('display', 'list'); 
+$.cookie('display', 'list');
 }
 }
-</script>  
+</script>
 <script type="text/javascript">
 // Check if Cookie exists
 if($.cookie('display')){
@@ -261,7 +261,7 @@ view = $.cookie('display');
 view = 'grid';
 }
 if(view) display(view);
-</script>   
+</script>
 <?php
 require_once('include/prefooter.php');
 require_once('include/footer.php');
